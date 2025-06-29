@@ -1,0 +1,1 @@
+export * from '@davinci/primitives/tailwind.config';

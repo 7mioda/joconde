@@ -1,0 +1,41 @@
+{
+  "name": "@davinci/primitives",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./global.css": "./src/global.css",
+    "./postcss.config": "./postcss.config.mjs",
+    "./tailwind.config": "./tailwind.config.ts",
+    "./*": "./src/*.tsx",
+    ".": "./src/components/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "davinci:add": "npx shadcn@latest add",
+    "generate:component": "turbo gen react-component",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@turbo/gen": "^2.5.0",
+    "@types/node": "^22.15.3",
+    "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.1",
+    "autoprefixer": "10.4.21",
+    "eslint": "^9.29.0",
+    "postcss": "8.4.49",
+    "tailwindcss": "3.4.17",
+    "typescript": "5.8.2"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.3",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "lucide-react": "0.408.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwind-merge": "2.4.0",
+    "tailwindcss-animate": "1.0.7"
+  }
+}
