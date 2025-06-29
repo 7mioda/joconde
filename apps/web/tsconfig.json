@@ -17,7 +17,11 @@
   ],
   "paths": {
     "@/*": ["./src/*"],
-    "@davinci/*": ["../../packages/davinci/src/*"]
+    "@davinci/*": ["../../packages/davinci/src/*"],
+    "@tasks": ["./modules/tasks"],
+    "@tasks/*": ["./modules/tasks/*"],
+    "@team": ["./modules/team"],
+    "@team/*": ["./modules/team/*"]
   },
   "exclude": [
     "node_modules"

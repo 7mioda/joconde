@@ -1,1 +1,1 @@
-export * from '@davinci/primitives/tailwind.config';
+export * from 'davinci/tailwind.config';

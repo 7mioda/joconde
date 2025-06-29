@@ -5,7 +5,8 @@ const config = {
   content: [
     './src/**/*.{ts,tsx,md,mdx}',
     '../../packages/davinci/src/**/*.{ts,tsx}',
-    '../../apps/web/src/**/*.{ts,tsx,md,mdx}',
+    '../../apps/web/app/**/*.{ts,tsx,md,mdx}',
+    '../../apps/web/modules/**/*.{ts,tsx,md,mdx}',
   ],
   prefix: '',
   theme: {

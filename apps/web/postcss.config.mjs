@@ -1,3 +1,3 @@
-import postcssConfig from '@davinci/primitives/postcss.config';
+import postcssConfig from 'davinci/postcss.config';
 
 export default postcssConfig;
