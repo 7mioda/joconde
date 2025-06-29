@@ -1,7 +1,6 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
-  "name": "joconde",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
