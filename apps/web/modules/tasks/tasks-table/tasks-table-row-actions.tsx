@@ -20,6 +20,8 @@ import {
 
 import { labels } from "../data/data"
 import { taskSchema } from "../data/schema"
+import { DeleteTaskDialog } from "../delete-task-dialog/delete-task-dialog"
+import { useState } from "react"
 
 interface TasksTableRowActionsProps<TData> {
   row: Row<TData>
@@ -29,9 +31,12 @@ export function TasksTableRowActions<TData>({
   row,
 }: TasksTableRowActionsProps<TData>) {
   const task = taskSchema.parse(row.original)
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
 
   return (
-    <DropdownMenu>
+    <div>
+{ isDeleteDialogOpen ?     <DeleteTaskDialog taskId={task.id} onCancel={() => setIsDeleteDialogOpen(false)} onDelete={() => setIsDeleteDialogOpen(false)} open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen} />
+: null}    <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
@@ -59,11 +64,12 @@ export function TasksTableRowActions<TData>({
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setIsDeleteDialogOpen(true)}>
           Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
+    </div>
   )
 }
