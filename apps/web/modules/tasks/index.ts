@@ -1,3 +1,5 @@
 export * from "./tasks-table"
 export * from "./data/schema"
 export * from "./tasks-table/columns"
+export * from "./add-task-form"
+export * from "./add-task-drawer"

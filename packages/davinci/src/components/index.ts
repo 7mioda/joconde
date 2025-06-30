@@ -4,6 +4,7 @@ export * from "./code";
 export * from "./table";
 export * from "./select";
 export * from "./input";
+export * from "./textarea";
 export * from "./dialog";
 export * from "./popover";
 export * from "./separator";
@@ -11,3 +12,4 @@ export * from "./command";
 export * from "./badge";
 export * from "./dropdown-menu";
 export * from "./checkbox"
+export * from "./drawer"

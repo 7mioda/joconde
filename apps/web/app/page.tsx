@@ -3,7 +3,7 @@ import path from "path"
 import { Metadata } from "next"
 import { z } from "zod"
 
-import { TasksTable, taskSchema, columns } from "../modules/tasks"
+import { TasksTable, taskSchema, columns, AddTaskDrawer } from "../modules/tasks"
 
 export const metadata: Metadata = {
   title: "Tasks",
@@ -34,7 +34,7 @@ export default async function TaskPage() {
             </p>
           </div>
           <div className="flex items-center space-x-2">
-            {/* <UserNav /> */}
+            <AddTaskDrawer />
           </div>
         </div>
         <TasksTable data={tasks} columns={columns} />

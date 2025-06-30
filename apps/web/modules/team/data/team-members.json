@@ -1,0 +1,128 @@
+[
+    {
+        "id": "USER-001",
+        "name": "Lewis Hamilton",
+        "email": "lewis.hamilton@davinci.com",
+        "role": "Developer",
+        "avatar": "https://avatar.vercel.sh/user-001"
+    },
+    {
+        "id": "USER-002",
+        "name": "Max Verstappen",
+        "email": "max.verstappen@davinci.com",
+        "role": "Designer",
+        "avatar": "https://avatar.vercel.sh/user-002"
+    },
+    {
+        "id": "USER-003",
+        "name": "George Russell",
+        "email": "george.russell@davinci.com",
+        "role": "Developer",
+        "avatar": "https://avatar.vercel.sh/user-003"
+    },
+    {
+        "id": "USER-004",
+        "name": "Carlos Sainz",
+        "email": "carlos.sainz@davinci.com",
+        "role": "Developer",
+        "avatar": "https://avatar.vercel.sh/user-004"
+    },
+    {
+        "id": "USER-005",
+        "name": "Charles Leclerc",
+        "email": "charles.leclerc@davinci.com",
+        "role": "Developer",
+        "avatar": "https://avatar.vercel.sh/user-005"
+    },
+    {
+        "id": "USER-006",
+        "name": "Lando Norris",
+        "email": "lando.norris@davinci.com",
+        "role": "Developer",
+        "avatar": "https://avatar.vercel.sh/user-006"
+    },
+    {
+        "id": "USER-007",
+        "name": "Sergio Perez",
+        "email": "sergio.perez@davinci.com",
+        "role": "Developer",
+        "avatar": "https://avatar.vercel.sh/user-007"
+    },
+    {
+        "id": "USER-008",
+        "name": "Fernando Alonso",
+        "email": "fernando.alonso@davinci.com",
+        "role": "Developer",
+        "avatar": "https://avatar.vercel.sh/user-008"
+    },
+    {
+        "id": "USER-009",
+        "name": "Oscar Piastri",
+        "email": "oscar.piastri@davinci.com",
+        "role": "Designer",
+        "avatar": "https://avatar.vercel.sh/user-009"
+    },
+    {
+        "id": "USER-010",
+        "name": "Lance Stroll",
+        "email": "lance.stroll@davinci.com",
+        "role": "Product Manager",
+        "avatar": "https://avatar.vercel.sh/user-010"
+    },
+    {
+        "id": "USER-011",
+        "name": "Esteban Ocon",
+        "email": "esteban.ocon@davinci.com",
+        "role": "Developer",
+        "avatar": "https://avatar.vercel.sh/user-011"
+    },
+    {
+        "id": "USER-012",
+        "name": "Pierre Gasly",
+        "email": "pierre.gasly@davinci.com",
+        "role": "Designer",
+        "avatar": "https://avatar.vercel.sh/user-012"
+    },
+    {
+        "id": "USER-013",
+        "name": "Valtteri Bottas",
+        "email": "valtteri.bottas@davinci.com",
+        "role": "Developer",
+        "avatar": "https://avatar.vercel.sh/user-013"
+    },
+    {
+        "id": "USER-014",
+        "name": "Zhou Guanyu",
+        "email": "zhou.guanyu@davinci.com",
+        "role": "Product Manager",
+        "avatar": "https://avatar.vercel.sh/user-014"
+    },
+    {
+        "id": "USER-015",
+        "name": "Nico Hulkenberg",
+        "email": "nico.hulkenberg@davinci.com",
+        "role": "Developer",
+        "avatar": "https://avatar.vercel.sh/user-015"
+    },
+    {
+        "id": "USER-016",
+        "name": "Kevin Magnussen",
+        "email": "kevin.magnussen@davinci.com",
+        "role": "Designer",
+        "avatar": "https://avatar.vercel.sh/user-016"
+    },
+    {
+        "id": "USER-017",
+        "name": "Yuki Tsunoda",
+        "email": "yuki.tsunoda@davinci.com",
+        "role": "Developer",
+        "avatar": "https://avatar.vercel.sh/user-017"
+    },
+    {
+        "id": "USER-018",
+        "name": "Daniel Ricciardo",
+        "email": "daniel.ricciardo@davinci.com",
+        "role": "Product Manager",
+        "avatar": "https://avatar.vercel.sh/user-018"
+    }
+]
