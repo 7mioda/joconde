@@ -1,5 +1,5 @@
 // Module exports
-export { TasksModule, TASK_REPOSITORY } from './index';
+export { TasksModule } from './index';
 
 // Domain exports
 export * from './domain';

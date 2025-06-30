@@ -4,7 +4,6 @@ import { PrismaTaskRepository } from './infrastructure/repositories/prisma-task.
 import { TaskRepository } from './domain';
 export * from './application/services/task.service';
 
-export const TASK_REPOSITORY = 'TASK_REPOSITORY';
 
 @Module({
   imports: [],

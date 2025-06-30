@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../../prisma/types';
 import { Task, TaskStatus, TaskLabel, Priority } from '../../domain/entities/task.entity';
 import { TaskRepository, CreateTaskData, UpdateTaskData, TaskFilters } from '../../domain/repositories/task.repository.interface';
 

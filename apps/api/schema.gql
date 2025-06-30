@@ -36,13 +36,43 @@ type DeleteTaskOutput {
   success: Boolean!
 }
 
+type Member {
+  id: ID!
+
+  """The name of the member"""
+  name: String!
+
+  """The email of the member"""
+  email: String!
+
+  """The first name of the member"""
+  firstname: String!
+
+  """The last name of the member"""
+  lastname: String!
+
+  """The avatar of the member"""
+  avatar: String!
+
+  """The last date the member was updated"""
+  updatedAt: DateTime!
+}
+
+type DeleteMemberOutput {
+  success: Boolean!
+}
+
 type Query {
   tasks: [Task!]!
+  members: [Member!]!
 }
 
 type Mutation {
   deleteTask(id: String!): DeleteTaskOutput!
   updateTask(id: String!, input: UpdateTaskInput!): Task!
+  createMember(input: CreateMemberInput!): Member!
+  updateMember(id: String!, input: UpdateMemberInput!): Member!
+  deleteMember(id: String!): DeleteMemberOutput!
 }
 
 input UpdateTaskInput {
@@ -63,4 +93,44 @@ input UpdateTaskInput {
 
   """The priority of the task"""
   priority: String
+}
+
+input CreateMemberInput {
+  """The first name of the member"""
+  firstname: String!
+
+  """The last name of the member"""
+  lastname: String!
+
+  """The email of the member"""
+  email: String!
+
+  """The role of the member"""
+  role: String!
+
+  """The team ID of the member"""
+  teamId: String!
+
+  """The status of the member"""
+  status: String
+}
+
+input UpdateMemberInput {
+  """The first name of the member"""
+  firstname: String
+
+  """The last name of the member"""
+  lastname: String
+
+  """The email of the member"""
+  email: String
+
+  """The role of the member"""
+  role: String
+
+  """The team ID of the member"""
+  teamId: String
+
+  """The status of the member"""
+  status: String
 }

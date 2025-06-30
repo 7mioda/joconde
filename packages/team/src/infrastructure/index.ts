@@ -1,0 +1,1 @@
+export * from './repositories/prisma-member.repository'; 

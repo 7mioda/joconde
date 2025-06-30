@@ -4,6 +4,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TasksModule } from './tasks/tasks.module';
+import { TeamsModule } from './teams/teams.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { TasksModule } from './tasks/tasks.module';
       }),
     }),
     TasksModule,
+    TeamsModule,
   ],
   controllers: [],
   providers: [],
