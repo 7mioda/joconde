@@ -1,10 +1,8 @@
-import { promises as fs } from "fs"
-import path from "path"
 import { Metadata } from "next"
-import { z } from "zod"
 
-import { TasksTable, taskSchema, columns, AddTaskDrawer } from "../modules/tasks"
-import { EditTaskDrawer } from "../modules/tasks/components/edit-task-drawer/edit-task-drawer"
+import { TasksTable, columns, AddTaskDrawer } from "../modules/tasks"
+import { getClient } from '../graphql/client/server';
+import { query } from "../modules/tasks/queries/tasks.query"
 
 export const metadata: Metadata = {
   title: "Tasks",
@@ -13,13 +11,12 @@ export const metadata: Metadata = {
 
 // Simulate a database read for tasks.
 async function getTasks() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "./modules/tasks/hooks/data/tasks.json")
-  )
+  const client = await getClient();
+  const { data } = await client.query({
+    query,
+  });
 
-  const tasks = JSON.parse(data.toString())
-
-  return z.array(taskSchema).parse(tasks)
+  return data.tasks
 }
 
 export default async function TaskPage() {
@@ -38,7 +35,11 @@ export default async function TaskPage() {
             <AddTaskDrawer />
           </div>
         </div>
-        <TasksTable data={tasks} columns={columns} />
+        <TasksTable data={tasks.map(task => ({
+          ...task,
+          priority: 'high',
+          assigneeId: task.assigneeId ?? '',
+        }))} columns={columns} />
       </div>
   )
 }
