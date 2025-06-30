@@ -23,6 +23,7 @@ import { taskSchema } from "../../hooks/data/schema"
 import { DeleteTaskDialog } from "../delete-task-dialog/delete-task-dialog"
 import { useState } from "react"
 import { EditTaskDrawer } from "../edit-task-drawer/edit-task-drawer"
+import { CopyTaskDrawer } from "../copy-task-drawer/copy-task-drawer"
 
 interface TasksTableRowActionsProps<TData> {
   row: Row<TData>
@@ -34,12 +35,15 @@ export function TasksTableRowActions<TData>({
   const task = taskSchema.parse(row.original)
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
   const [isEditDrawerOpen, setIsEditDrawerOpen] = useState(false)
+  const [isCopyDrawerOpen, setIsCopyDrawerOpen] = useState(false)
 
   return (
     <div>
 { isDeleteDialogOpen ?     <DeleteTaskDialog taskId={task.id} onCancel={() => setIsDeleteDialogOpen(false)} onDelete={() => setIsDeleteDialogOpen(false)} open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen} />
 : null}
 { isEditDrawerOpen ?     <EditTaskDrawer taskId={task.id} open={isEditDrawerOpen} onOpenChange={setIsEditDrawerOpen} />
+: null}
+{ isCopyDrawerOpen ?     <CopyTaskDrawer taskId={task.id} open={isCopyDrawerOpen} onOpenChange={setIsCopyDrawerOpen} />
 : null}
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -53,7 +57,7 @@ export function TasksTableRowActions<TData>({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem onClick={() => setIsEditDrawerOpen(true)}>Edit</DropdownMenuItem>
-        <DropdownMenuItem>Make a copy</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setIsCopyDrawerOpen(true)}>Make a copy</DropdownMenuItem>
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuSub>
