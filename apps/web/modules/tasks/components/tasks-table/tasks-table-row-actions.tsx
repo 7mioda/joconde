@@ -18,10 +18,11 @@ import {
   DropdownMenuTrigger,
 } from "davinci/primitives"
 
-import { labels } from "../data/data"
-import { taskSchema } from "../data/schema"
+import { labels } from "../../hooks/data/data"
+import { taskSchema } from "../../hooks/data/schema"
 import { DeleteTaskDialog } from "../delete-task-dialog/delete-task-dialog"
 import { useState } from "react"
+import { EditTaskDrawer } from "../edit-task-drawer/edit-task-drawer"
 
 interface TasksTableRowActionsProps<TData> {
   row: Row<TData>
@@ -32,11 +33,15 @@ export function TasksTableRowActions<TData>({
 }: TasksTableRowActionsProps<TData>) {
   const task = taskSchema.parse(row.original)
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
+  const [isEditDrawerOpen, setIsEditDrawerOpen] = useState(false)
 
   return (
     <div>
 { isDeleteDialogOpen ?     <DeleteTaskDialog taskId={task.id} onCancel={() => setIsDeleteDialogOpen(false)} onDelete={() => setIsDeleteDialogOpen(false)} open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen} />
-: null}    <DropdownMenu>
+: null}
+{ isEditDrawerOpen ?     <EditTaskDrawer taskId={task.id} open={isEditDrawerOpen} onOpenChange={setIsEditDrawerOpen} />
+: null}
+    <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
@@ -47,7 +52,7 @@ export function TasksTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Edit</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setIsEditDrawerOpen(true)}>Edit</DropdownMenuItem>
         <DropdownMenuItem>Make a copy</DropdownMenuItem>
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />

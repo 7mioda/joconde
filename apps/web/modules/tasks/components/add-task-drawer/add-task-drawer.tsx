@@ -4,7 +4,7 @@ import * as React from "react"
 import { Plus } from "davinci/icons"
 import { Button, Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger, ScrollArea } from "davinci/primitives"
 import { AddTaskForm } from "../add-task-form"
-import { Task } from "../data/schema"
+import { Task } from "../../hooks/data/schema"
 
 interface AddTaskDrawerProps {
   onTaskAdded?: (task: Task) => void

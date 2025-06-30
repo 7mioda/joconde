@@ -4,6 +4,7 @@ import { Metadata } from "next"
 import { z } from "zod"
 
 import { TasksTable, taskSchema, columns, AddTaskDrawer } from "../modules/tasks"
+import { EditTaskDrawer } from "../modules/tasks/components/edit-task-drawer/edit-task-drawer"
 
 export const metadata: Metadata = {
   title: "Tasks",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 // Simulate a database read for tasks.
 async function getTasks() {
   const data = await fs.readFile(
-    path.join(process.cwd(), "./modules/tasks/data/tasks.json")
+    path.join(process.cwd(), "./modules/tasks/hooks/data/tasks.json")
   )
 
   const tasks = JSON.parse(data.toString())

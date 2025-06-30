@@ -14,10 +14,10 @@ import {
   Textarea,
 } from "davinci/primitives"
 
-import { ProjectSelect } from "../../project"
-import { priorities, statuses } from "../data/data"
-import { taskSchema } from "../data/schema"
-import { TeamMemberSelect } from "../../team/team-member-select"
+import { ProjectSelect } from "../../../project"
+import { priorities, statuses } from "../../hooks/data/data"
+import { taskSchema } from "../../hooks/data/schema"
+import { TeamMemberSelect } from "../../../team/team-member-select"
 
 // Create a schema for the form (without id since it will be generated)
 const addTaskSchema = taskSchema.omit({ id: true })

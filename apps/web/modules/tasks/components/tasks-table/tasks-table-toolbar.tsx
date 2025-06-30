@@ -6,7 +6,7 @@ import { X } from "davinci/icons"
 import { Button, Input } from "davinci/primitives"
 import { TasksTableViewOptions } from "./tasks-table-view-options"
 
-import { priorities, statuses } from "../data/data"
+import { priorities, statuses } from "../../hooks/data/data"
 import { TasksTableFacetedFilter } from "./tasks-table-faceted-filter"
 
 interface TasksTableToolbarProps<TData> {

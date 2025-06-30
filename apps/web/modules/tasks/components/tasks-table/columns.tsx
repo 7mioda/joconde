@@ -4,8 +4,8 @@ import { ColumnDef } from "@tanstack/react-table"
 
 import { Badge, Checkbox } from "davinci/primitives"
 
-import { labels, priorities, statuses } from "../data/data"
-import { Task } from "../data/schema"
+import { labels, priorities, statuses } from "../../hooks/data/data"
+import { Task } from "../../hooks/data/schema"
 import { TasksTableColumnHeader } from "./tasks-table-column-header"
 import { TasksTableRowActions } from "./tasks-table-row-actions"
 
