@@ -1,0 +1,66 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Task {
+  id: ID!
+
+  """The title of the task"""
+  title: String!
+
+  """The description of the task"""
+  description: String!
+
+  """The status of the task"""
+  status: String!
+
+  """The label of the task"""
+  label: String!
+
+  """The project ID of the task"""
+  projectId: String!
+
+  """The assignee ID of the task"""
+  assigneeId: String!
+
+  """The last date the category was updated"""
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DeleteTaskOutput {
+  success: Boolean!
+}
+
+type Query {
+  tasks: [Task!]!
+}
+
+type Mutation {
+  deleteTask(id: String!): DeleteTaskOutput!
+  updateTask(id: String!, input: UpdateTaskInput!): Task!
+}
+
+input UpdateTaskInput {
+  """The title of the task"""
+  title: String
+
+  """The description of the task"""
+  description: String
+
+  """The status of the task"""
+  status: String
+
+  """The label of the task"""
+  label: String
+
+  """The project ID of the task"""
+  projectId: String
+
+  """The priority of the task"""
+  priority: String
+}
