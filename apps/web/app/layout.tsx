@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from 'next/font/google';
-import { Providers } from './providers';
+import { ThemingProvider } from '../modules/theming/provider';
+import { GraphQLProvider } from '../graphql/provider';
+
 import "davinci/global.css";
 
 const inter = Inter({
@@ -21,13 +23,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>
+        <GraphQLProvider>
+        <ThemingProvider>
       <div className="container-wrapper">
         <div className="container py-6">
           {children}
           </div>
       </div>
-      </Providers>
+      </ThemingProvider>
+      </GraphQLProvider>
       </body>
     </html>
   );

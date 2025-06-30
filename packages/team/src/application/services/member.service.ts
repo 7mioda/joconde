@@ -17,7 +17,6 @@ export class MemberService {
   }
 
   async getAllMembers(filters?: MemberFilters): Promise<Member[]> {
-    console.log('this.memberRepository. 🔥🔥🔥🔥🔥',  this.memberRepository);
     return this.memberRepository.findAll(filters);
   }
 

@@ -1,6 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'davinci/primitives';
-import teamMembers from '../data/team-members.json';
+import { useTeamMembers } from '../queries/use-team-members';
 
 interface TeamMemberSelectProps {
     onSelect: (memberId: string | null) => void;
@@ -8,7 +10,9 @@ interface TeamMemberSelectProps {
 }
 
 export function TeamMemberSelect({ onSelect, selectedId }: TeamMemberSelectProps) {
-
+    const { data, loading, error } = useTeamMembers({});
+    console.log('data', { data, loading, error });
+    const teamMembers = data?.members ?? [];
     const selectedMember = selectedId 
     ? teamMembers.find(p => p.id === selectedId) 
     : undefined;
@@ -49,8 +53,7 @@ export function TeamMemberSelect({ onSelect, selectedId }: TeamMemberSelectProps
                                     className="rounded-full"
                                 />
                                 <div className="flex flex-col">
-                                    <span className="font-medium">{member.name}</span>
-                                    <span className="text-sm text-gray-500">{member.role}</span>
+                                    <span className="font-medium">{member.firstname} {member.lastname}</span>
                                 </div>
                             </div>
                         </SelectItem>

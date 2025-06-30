@@ -14,10 +14,14 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
+    "\nquery Projects {\n  projects {\n    id\n    title\n    description\n    status\n    ownerId\n    updatedAt\n  }\n}\n": typeof types.ProjectsDocument,
     "\n  query Tasks {\n    tasks {\n      id\n      title\n      status\n      label\n      description\n      assigneeId\n    }\n  }\n": typeof types.TasksDocument,
+    "\nquery Members {\n  members {\n    email\n    id\n    name\n    avatar\n    firstname\n    lastname\n    updatedAt\n  }\n}\n": typeof types.MembersDocument,
 };
 const documents: Documents = {
+    "\nquery Projects {\n  projects {\n    id\n    title\n    description\n    status\n    ownerId\n    updatedAt\n  }\n}\n": types.ProjectsDocument,
     "\n  query Tasks {\n    tasks {\n      id\n      title\n      status\n      label\n      description\n      assigneeId\n    }\n  }\n": types.TasksDocument,
+    "\nquery Members {\n  members {\n    email\n    id\n    name\n    avatar\n    firstname\n    lastname\n    updatedAt\n  }\n}\n": types.MembersDocument,
 };
 
 /**
@@ -37,7 +41,15 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\nquery Projects {\n  projects {\n    id\n    title\n    description\n    status\n    ownerId\n    updatedAt\n  }\n}\n"): (typeof documents)["\nquery Projects {\n  projects {\n    id\n    title\n    description\n    status\n    ownerId\n    updatedAt\n  }\n}\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "\n  query Tasks {\n    tasks {\n      id\n      title\n      status\n      label\n      description\n      assigneeId\n    }\n  }\n"): (typeof documents)["\n  query Tasks {\n    tasks {\n      id\n      title\n      status\n      label\n      description\n      assigneeId\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\nquery Members {\n  members {\n    email\n    id\n    name\n    avatar\n    firstname\n    lastname\n    updatedAt\n  }\n}\n"): (typeof documents)["\nquery Members {\n  members {\n    email\n    id\n    name\n    avatar\n    firstname\n    lastname\n    updatedAt\n  }\n}\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

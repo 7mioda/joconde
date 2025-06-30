@@ -18,15 +18,77 @@ export type Scalars = {
   DateTime: { input: any; output: any; }
 };
 
+export type CreateMemberInput = {
+  /** The email of the member */
+  email: Scalars['String']['input'];
+  /** The first name of the member */
+  firstname: Scalars['String']['input'];
+  /** The last name of the member */
+  lastname: Scalars['String']['input'];
+  /** The role of the member */
+  role: Scalars['String']['input'];
+  /** The status of the member */
+  status?: InputMaybe<Scalars['String']['input']>;
+  /** The team ID of the member */
+  teamId: Scalars['String']['input'];
+};
+
+export type DeleteMemberOutput = {
+  __typename?: 'DeleteMemberOutput';
+  success: Scalars['Boolean']['output'];
+};
+
+export type DeleteProjectOutput = {
+  __typename?: 'DeleteProjectOutput';
+  success: Scalars['Boolean']['output'];
+};
+
 export type DeleteTaskOutput = {
   __typename?: 'DeleteTaskOutput';
   success: Scalars['Boolean']['output'];
 };
 
+export type Member = {
+  __typename?: 'Member';
+  /** The avatar of the member */
+  avatar: Scalars['String']['output'];
+  /** The email of the member */
+  email: Scalars['String']['output'];
+  /** The first name of the member */
+  firstname: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  /** The last name of the member */
+  lastname: Scalars['String']['output'];
+  /** The name of the member */
+  name: Scalars['String']['output'];
+  /** The last date the member was updated */
+  updatedAt: Scalars['DateTime']['output'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  createMember: Member;
+  deleteMember: DeleteMemberOutput;
+  deleteProject: DeleteProjectOutput;
   deleteTask: DeleteTaskOutput;
+  updateMember: Member;
+  updateProject: Project;
   updateTask: Task;
+};
+
+
+export type MutationCreateMemberArgs = {
+  input: CreateMemberInput;
+};
+
+
+export type MutationDeleteMemberArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+export type MutationDeleteProjectArgs = {
+  id: Scalars['String']['input'];
 };
 
 
@@ -35,13 +97,42 @@ export type MutationDeleteTaskArgs = {
 };
 
 
+export type MutationUpdateMemberArgs = {
+  id: Scalars['String']['input'];
+  input: UpdateMemberInput;
+};
+
+
+export type MutationUpdateProjectArgs = {
+  id: Scalars['String']['input'];
+  input: UpdateProjectInput;
+};
+
+
 export type MutationUpdateTaskArgs = {
   id: Scalars['String']['input'];
   input: UpdateTaskInput;
 };
 
+export type Project = {
+  __typename?: 'Project';
+  /** The description of the project */
+  description: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  /** The owner ID of the project */
+  ownerId: Scalars['String']['output'];
+  /** The status of the project */
+  status: Scalars['String']['output'];
+  /** The title of the project */
+  title: Scalars['String']['output'];
+  /** The last date the project was updated */
+  updatedAt: Scalars['DateTime']['output'];
+};
+
 export type Query = {
   __typename?: 'Query';
+  members: Array<Member>;
+  projects: Array<Project>;
   tasks: Array<Task>;
 };
 
@@ -64,6 +155,32 @@ export type Task = {
   updatedAt: Scalars['DateTime']['output'];
 };
 
+export type UpdateMemberInput = {
+  /** The email of the member */
+  email?: InputMaybe<Scalars['String']['input']>;
+  /** The first name of the member */
+  firstname?: InputMaybe<Scalars['String']['input']>;
+  /** The last name of the member */
+  lastname?: InputMaybe<Scalars['String']['input']>;
+  /** The role of the member */
+  role?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the member */
+  status?: InputMaybe<Scalars['String']['input']>;
+  /** The team ID of the member */
+  teamId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UpdateProjectInput = {
+  /** The description of the project */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** The name of the project */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** The owner ID of the project */
+  ownerId?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the project */
+  status?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type UpdateTaskInput = {
   /** The description of the task */
   description?: InputMaybe<Scalars['String']['input']>;
@@ -79,10 +196,22 @@ export type UpdateTaskInput = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ProjectsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProjectsQuery = { __typename?: 'Query', projects: Array<{ __typename?: 'Project', id: string, title: string, description: string, status: string, ownerId: string, updatedAt: any }> };
+
 export type TasksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', id: string, title: string, status: string, label: string, description: string, assigneeId: string }> };
 
+export type MembersQueryVariables = Exact<{ [key: string]: never; }>;
 
+
+export type MembersQuery = { __typename?: 'Query', members: Array<{ __typename?: 'Member', email: string, id: string, name: string, avatar: string, firstname: string, lastname: string, updatedAt: any }> };
+
+
+export const ProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"ownerId"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<ProjectsQuery, ProjectsQueryVariables>;
 export const TasksDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Tasks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tasks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"assigneeId"}}]}}]}}]} as unknown as DocumentNode<TasksQuery, TasksQueryVariables>;
+export const MembersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Members"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"members"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<MembersQuery, MembersQueryVariables>;

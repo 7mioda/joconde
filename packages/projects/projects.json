@@ -1,0 +1,82 @@
+[
+  {
+    "id": "PROJ-001",
+    "title": "Frontend Development",
+    "description": "Main frontend application development and UI improvements",
+    "status": "IN_PROGRESS",
+    "priority": "HIGH",
+    "ownerId": "user-001",
+    "startDate": "2024-01-15",
+    "endDate": "2024-06-30"
+  },
+  {
+    "id": "PROJ-002", 
+    "title": "Backend API",
+    "description": "Backend API development and database integration",
+    "status": "IN_PROGRESS",
+    "priority": "HIGH",
+    "ownerId": "user-002",
+    "startDate": "2024-01-10",
+    "endDate": "2024-05-15"
+  },
+  {
+    "id": "PROJ-003",
+    "title": "Mobile App",
+    "description": "Cross-platform mobile application development",
+    "status": "PLANNING",
+    "priority": "MEDIUM",
+    "ownerId": "user-003",
+    "startDate": "2024-03-01",
+    "endDate": "2024-08-31"
+  },
+  {
+    "id": "PROJ-004",
+    "title": "DevOps & Infrastructure",
+    "description": "CI/CD pipeline setup and infrastructure management",
+    "status": "COMPLETED",
+    "priority": "MEDIUM",
+    "ownerId": "user-004",
+    "startDate": "2023-12-01",
+    "endDate": "2024-02-28"
+  },
+  {
+    "id": "PROJ-005",
+    "title": "Testing & QA",
+    "description": "Quality assurance and automated testing implementation",
+    "status": "ON_HOLD",
+    "priority": "LOW",
+    "ownerId": "user-005",
+    "startDate": "2024-02-01",
+    "endDate": "2024-04-30"
+  },
+  {
+    "id": "PROJ-006",
+    "title": "Documentation",
+    "description": "Technical documentation and user guides",
+    "status": "IN_PROGRESS",
+    "priority": "LOW",
+    "ownerId": "user-006",
+    "startDate": "2024-01-20",
+    "endDate": "2024-07-15"
+  },
+  {
+    "id": "PROJ-007",
+    "title": "Security",
+    "description": "Security audit and vulnerability fixes",
+    "status": "IN_PROGRESS",
+    "priority": "CRITICAL",
+    "ownerId": "user-007",
+    "startDate": "2024-02-15",
+    "endDate": "2024-03-31"
+  },
+  {
+    "id": "PROJ-008",
+    "title": "Performance Optimization",
+    "description": "Application performance improvements and optimization",
+    "status": "PLANNING",
+    "priority": "MEDIUM",
+    "ownerId": "user-008",
+    "startDate": "2024-04-01",
+    "endDate": "2024-09-30"
+  }
+] 

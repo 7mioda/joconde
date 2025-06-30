@@ -62,9 +62,33 @@ type DeleteMemberOutput {
   success: Boolean!
 }
 
+type Project {
+  id: ID!
+
+  """The title of the project"""
+  title: String!
+
+  """The description of the project"""
+  description: String!
+
+  """The status of the project"""
+  status: String!
+
+  """The owner ID of the project"""
+  ownerId: String!
+
+  """The last date the project was updated"""
+  updatedAt: DateTime!
+}
+
+type DeleteProjectOutput {
+  success: Boolean!
+}
+
 type Query {
   tasks: [Task!]!
   members: [Member!]!
+  projects: [Project!]!
 }
 
 type Mutation {
@@ -73,6 +97,8 @@ type Mutation {
   createMember(input: CreateMemberInput!): Member!
   updateMember(id: String!, input: UpdateMemberInput!): Member!
   deleteMember(id: String!): DeleteMemberOutput!
+  deleteProject(id: String!): DeleteProjectOutput!
+  updateProject(id: String!, input: UpdateProjectInput!): Project!
 }
 
 input UpdateTaskInput {
@@ -133,4 +159,18 @@ input UpdateMemberInput {
 
   """The status of the member"""
   status: String
+}
+
+input UpdateProjectInput {
+  """The name of the project"""
+  name: String
+
+  """The description of the project"""
+  description: String
+
+  """The status of the project"""
+  status: String
+
+  """The owner ID of the project"""
+  ownerId: String
 }

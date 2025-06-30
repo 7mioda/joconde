@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'davinci/primitives';
-import projects from '../data/projects.json';
+import { useProjects } from '../queries/use-projects';
 
 interface ProjectSelectProps {
   onSelect?: (projectId: string | null) => void;
@@ -13,6 +13,8 @@ export function ProjectSelect({
   onSelect, 
   selectedId, 
 }: ProjectSelectProps) {
+  const { data, loading, error } = useProjects({});
+  const projects = data?.projects ?? [];
   const selectedProject = selectedId 
     ? projects.find(p => p.id === selectedId) 
     : null;
