@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Plus } from "davinci/icons"
-import { Button, Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "davinci/primitives"
+import { Button, Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger, ScrollArea } from "davinci/primitives"
 import { AddTaskForm } from "../add-task-form"
 import { Task } from "../data/schema"
 
@@ -62,17 +62,19 @@ export function AddTaskDrawer({
           {triggerLabel}
         </Button>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="h-full w-full">
+      <ScrollArea className="flex-1 overflow-y-auto h-72 w-full p-6">
         <DrawerHeader>
           <DrawerTitle>Add New Task</DrawerTitle>
         </DrawerHeader>
-        <div className="flex-1 overflow-y-auto p-6">
-          <AddTaskForm 
-            onSubmit={handleSubmit}
-            onCancel={handleCancel}
-            isLoading={isLoading}
-          />
-        </div>
+          <div className="p-6">
+            <AddTaskForm 
+              onSubmit={handleSubmit}
+              onCancel={handleCancel}
+              isLoading={isLoading}
+            />
+          </div>
+        </ScrollArea>
       </DrawerContent>
     </Drawer>
   )

@@ -13,3 +13,4 @@ export * from "./badge";
 export * from "./dropdown-menu";
 export * from "./checkbox"
 export * from "./drawer"
+export * from "./scroll-area"
