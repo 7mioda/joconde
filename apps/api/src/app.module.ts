@@ -5,7 +5,9 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TasksModule } from './tasks/tasks.module';
 import { TeamsModule } from './teams/teams.module';
+import { TrackerModule } from './shared';
 import { ProjectsModule } from './projects/projects.module';
+import { ActivitiesModule } from './activities/activities.module';
 
 @Module({
   imports: [
@@ -37,6 +39,8 @@ import { ProjectsModule } from './projects/projects.module';
     TasksModule,
     TeamsModule,
     ProjectsModule,
+    ActivitiesModule,
+    TrackerModule,
   ],
   controllers: [],
   providers: [],
