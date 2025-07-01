@@ -21,6 +21,7 @@ type Documents = {
     "\nquery Task($taskId: String!) {\n    task(taskId: $taskId) {\n      id\n      title\n      priority\n      description\n      status\n      label\n      projectId\n      assigneeId\n      updatedAt\n    }\n  }\n": typeof types.TaskDocument,
     "\n  query Tasks {\n    tasks {\n      id\n      title\n      status\n      label\n      priority\n      description\n      assigneeId\n      project {\n        id \n        title\n      }\n      assignee {\n        id\n        name\n        avatar\n      }\n    }\n  }\n": typeof types.TasksDocument,
     "\nquery Members {\n  members {\n    email\n    id\n    name\n    avatar\n    firstname\n    lastname\n    updatedAt\n  }\n}\n": typeof types.MembersDocument,
+    "\n  subscription OnEvent {\n    onEvent {\n      title\n      type\n      description\n      timestamp\n    }\n  }\n": typeof types.OnEventDocument,
 };
 const documents: Documents = {
     "\nquery Projects {\n  projects {\n    id\n    title\n    description\n    status\n    ownerId\n    updatedAt\n  }\n}\n": types.ProjectsDocument,
@@ -30,6 +31,7 @@ const documents: Documents = {
     "\nquery Task($taskId: String!) {\n    task(taskId: $taskId) {\n      id\n      title\n      priority\n      description\n      status\n      label\n      projectId\n      assigneeId\n      updatedAt\n    }\n  }\n": types.TaskDocument,
     "\n  query Tasks {\n    tasks {\n      id\n      title\n      status\n      label\n      priority\n      description\n      assigneeId\n      project {\n        id \n        title\n      }\n      assignee {\n        id\n        name\n        avatar\n      }\n    }\n  }\n": types.TasksDocument,
     "\nquery Members {\n  members {\n    email\n    id\n    name\n    avatar\n    firstname\n    lastname\n    updatedAt\n  }\n}\n": types.MembersDocument,
+    "\n  subscription OnEvent {\n    onEvent {\n      title\n      type\n      description\n      timestamp\n    }\n  }\n": types.OnEventDocument,
 };
 
 /**
@@ -74,6 +76,10 @@ export function graphql(source: "\n  query Tasks {\n    tasks {\n      id\n     
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\nquery Members {\n  members {\n    email\n    id\n    name\n    avatar\n    firstname\n    lastname\n    updatedAt\n  }\n}\n"): (typeof documents)["\nquery Members {\n  members {\n    email\n    id\n    name\n    avatar\n    firstname\n    lastname\n    updatedAt\n  }\n}\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  subscription OnEvent {\n    onEvent {\n      title\n      type\n      description\n      timestamp\n    }\n  }\n"): (typeof documents)["\n  subscription OnEvent {\n    onEvent {\n      title\n      type\n      description\n      timestamp\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

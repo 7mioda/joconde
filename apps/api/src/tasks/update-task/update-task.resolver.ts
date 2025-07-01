@@ -19,8 +19,8 @@ export class UpdateTaskResolver {
     const task = await this.taskService.updateTask(id, input);
     this.trackerService.publish({
       type: 'taskUpdated',
-      title: `${task.title} updated at ${new Date().toISOString()}`,
-      description: 'Task updated',
+      title: `Task updated`,
+      description: `The task "${task.title}" was modified with updated details. Check the latest changes to stay in sync with your team's progress`,
       payload: {
         taskId: task.id,
         task: {

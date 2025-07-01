@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from 'next/font/google';
 import { ThemingProvider } from '../modules/theming/provider';
+import { TrackerProvider } from "../modules/tracker/provider";
 import { GraphQLProvider } from '../graphql/provider';
 
 import "davinci/global.css";
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <GraphQLProvider>
+          <TrackerProvider>
         <ThemingProvider>
       <div className="container-wrapper">
         <div className="container py-6">
@@ -31,6 +33,7 @@ export default function RootLayout({
           </div>
       </div>
       </ThemingProvider>
+      </TrackerProvider>
       </GraphQLProvider>
       </body>
     </html>
