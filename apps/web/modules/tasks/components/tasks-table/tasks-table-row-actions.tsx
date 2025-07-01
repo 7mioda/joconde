@@ -22,8 +22,8 @@ import { labels } from "../../hooks/data/data"
 import { taskSchema } from "../../hooks/data/schema"
 import { DeleteTaskDialog } from "../delete-task-dialog/delete-task-dialog"
 import { useState } from "react"
-import { EditTaskDrawer } from "../edit-task-drawer/edit-task-drawer"
 import { CopyTaskDrawer } from "../copy-task-drawer/copy-task-drawer"
+import { EditTaskDrawer } from "../edit-task-drawer/edit-task-drawer"
 
 interface TasksTableRowActionsProps<TData> {
   row: Row<TData>

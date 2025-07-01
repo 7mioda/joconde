@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'davinci/primitives';
-import { useProjects } from '../queries/use-projects';
+import { useProjects } from '../../queries/use-projects';
 
 interface ProjectSelectProps {
   onSelect?: (projectId: string | null) => void;

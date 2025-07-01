@@ -1,1 +1,1 @@
-export { ProjectSelect } from './project-select/project-select';
+export { ProjectSelect } from './components/project-select/project-select';

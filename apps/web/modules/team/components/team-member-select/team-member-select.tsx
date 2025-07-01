@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'davinci/primitives';
-import { useTeamMembers } from '../queries/use-team-members';
+import { useTeamMembers } from '../../queries/use-team-members';
 
 interface TeamMemberSelectProps {
     onSelect: (memberId: string | null) => void;
