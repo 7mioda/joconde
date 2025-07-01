@@ -12,6 +12,8 @@ import {
   DialogTrigger,
   Input,
 } from "davinci/primitives"
+import { useDeleteTask } from "../../mutations/use-delete-task"
+import { query } from "../../queries/tasks.query"
 
 interface DeleteTaskDialogProps {
   taskId: string
@@ -24,21 +26,24 @@ interface DeleteTaskDialogProps {
 
 export function DeleteTaskDialog({ taskId, onDelete, open, onOpenChange, onCancel, trigger }: DeleteTaskDialogProps) {
   const [confirmationText, setConfirmationText] = React.useState("")
-  const [isDeleting, setIsDeleting] = React.useState(false)
+  const [deleteTask, { loading: isDeleting }] = useDeleteTask({
+    refetchQueries: [{ query: query }],
+  });
 
   const handleDelete = async () => {
     if (confirmationText !== "delete task") {
       return
     }
 
-    setIsDeleting(true)
-    try {
-      await onDelete?.(taskId)
+    const result = await deleteTask({
+      variables: {
+        deleteTaskId: taskId,
+      },
+    });
+
+    if(result.data?.deleteTask.success) {
+      onDelete?.(taskId)
       setConfirmationText("")
-    } catch (error) {
-      console.error("Failed to delete task:", error)
-    } finally {
-      setIsDeleting(false)
     }
   }
 

@@ -26,27 +26,27 @@ import {
   
   export const statuses = [
     {
-      value: "backlog",
+      value: "BACKLOG",
       label: "Backlog",
       icon: HelpCircle,
     },
     {
-      value: "todo",
+      value: "TODO",
       label: "Todo",
       icon: Circle,
     },
     {
-      value: "in progress",
+      value: "IN_PROGRESS",
       label: "In Progress",
       icon: Timer,
     },
     {
-      value: "done",
+      value: "DONE",
       label: "Done",
       icon: CheckCircle,
     },
     {
-      value: "canceled",
+      value: "CANCELED",
       label: "Canceled",
       icon: CircleOff,
     },
@@ -55,17 +55,17 @@ import {
   export const priorities = [
     {
       label: "Low",
-      value: "low",
+      value: "LOW",
       icon: ArrowDown,
     },
     {
       label: "Medium",
-      value: "medium",
+      value: "MEDIUM",
       icon: ArrowRight,
     },
     {
       label: "High",
-      value: "high",
+      value: "HIGH",
       icon: ArrowUp,
     },
   ]

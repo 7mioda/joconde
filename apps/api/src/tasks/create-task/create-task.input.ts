@@ -1,15 +1,9 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 
-@ObjectType('Task')
-export class Task {
-  @Field(() => ID)
-  id: string;
-
+@InputType('CreateTaskInput')
+export class CreateTaskInput {
   @Field({ description: 'The title of the task' })
   title: string;
-
-  @Field({ description: 'The priority of the task' })
-  priority: string;
 
   @Field({ description: 'The description of the task' })
   description: string;
@@ -26,6 +20,6 @@ export class Task {
   @Field({ description: 'The assignee ID of the task' })
   assigneeId: string;
 
-  @Field(() => Date, { description: 'The last date the category was updated' })
-  updatedAt: Date;
-}
+  @Field({ description: 'The priority of the task' })
+  priority: string;
+} 

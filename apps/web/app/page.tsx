@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 
-import { TasksTable, columns, AddTaskDrawer } from "../modules/tasks"
+import { TasksTable, AddTaskDrawer } from "../modules/tasks"
 import { getClient } from '../graphql/client/server';
 import { query } from "../modules/tasks/queries/tasks.query"
 
@@ -9,7 +9,6 @@ export const metadata: Metadata = {
   description: "A task and issue tracker",
 }
 
-// Simulate a database read for tasks.
 async function getTasks() {
   const client = await getClient();
   const { data } = await client.query({
@@ -35,11 +34,7 @@ export default async function TaskPage() {
             <AddTaskDrawer />
           </div>
         </div>
-        <TasksTable data={tasks.map(task => ({
-          ...task,
-          priority: 'high',
-          assigneeId: task.assigneeId ?? '',
-        }))} columns={columns} />
+        <TasksTable />
       </div>
   )
 }

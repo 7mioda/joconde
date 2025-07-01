@@ -8,6 +8,9 @@ export class UpdateTaskInput {
   @Field({ description: 'The description of the task', nullable: true })
   description?: string;
 
+  @Field({ description: 'The assignee ID of the task', nullable: true })
+  assigneeId?: string;
+
   @Field({ description: 'The status of the task', nullable: true })
   status?: string;
 

@@ -100,6 +100,10 @@ export class PrismaTaskRepository implements TaskRepository {
       updateData.priority = this.mapPriorityToPrisma(data.priority);
     }
 
+    if (data.assigneeId !== undefined) {
+      updateData.assigneeId = data.assigneeId;
+    }
+
     const taskData = await this.prisma.task.update({
       where: { id },
       data: updateData,

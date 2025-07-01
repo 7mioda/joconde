@@ -13,6 +13,7 @@ export interface CreateTaskData {
 export interface UpdateTaskData {
   title?: string;
   description?: string;
+  assigneeId?: string;
   status?: string;
   label?: string;
   projectId?: string;

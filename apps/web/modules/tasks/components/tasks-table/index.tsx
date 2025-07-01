@@ -3,7 +3,6 @@
 
 import * as React from "react"
 import {
-  ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
@@ -26,18 +25,14 @@ import {
   TableRow,
 } from "davinci/primitives"
 
+import { columns } from "./columns"
 import { TasksTablePagination } from "./tasks-table-pagination"
 import { TasksTableToolbar } from "./tasks-table-toolbar"
+import { useTasks } from "../../queries/use-tasks"
 
-interface TasksTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
-}
 
-export function TasksTable<TData, TValue>({
-  columns,
-  data,
-}: TasksTableProps<TData, TValue>) {
+export function TasksTable() {
+  const { data } = useTasks({});
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
@@ -46,9 +41,12 @@ export function TasksTable<TData, TValue>({
   )
   const [sorting, setSorting] = React.useState<SortingState>([])
 
+
+  const tasks =  data?.tasks ?? []
+
   const table = useReactTable({
-    data,
-    columns,
+    data: tasks,
+    columns: columns as unknown as any,
     state: {
       sorting,
       columnVisibility,

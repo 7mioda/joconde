@@ -15,12 +15,20 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 type Documents = {
     "\nquery Projects {\n  projects {\n    id\n    title\n    description\n    status\n    ownerId\n    updatedAt\n  }\n}\n": typeof types.ProjectsDocument,
-    "\n  query Tasks {\n    tasks {\n      id\n      title\n      status\n      label\n      description\n      assigneeId\n    }\n  }\n": typeof types.TasksDocument,
+    "\nmutation CreateTask($input: CreateTaskInput!) {\n    createTask(input: $input) {\n      id\n      title\n      description\n      status\n      label\n      priority\n      projectId\n      assigneeId\n      updatedAt\n    }\n  }\n": typeof types.CreateTaskDocument,
+    "\nmutation DeleteTask($deleteTaskId: String!) {\n  deleteTask(id: $deleteTaskId) {\n    success\n  }\n}\n": typeof types.DeleteTaskDocument,
+    "\nmutation UpdateTask($updateTaskId: String!, $input: UpdateTaskInput!) {\n  updateTask(id: $updateTaskId, input: $input) {\n    id\n    title\n    priority\n    description\n    status\n    label\n    projectId\n    assigneeId\n    updatedAt\n  }\n}\n": typeof types.UpdateTaskDocument,
+    "\nquery Task($taskId: String!) {\n    task(taskId: $taskId) {\n      id\n      title\n      priority\n      description\n      status\n      label\n      projectId\n      assigneeId\n      updatedAt\n    }\n  }\n": typeof types.TaskDocument,
+    "\n  query Tasks {\n    tasks {\n      id\n      title\n      status\n      label\n      priority\n      description\n      assigneeId\n      project {\n        id \n        title\n      }\n      assignee {\n        id\n        name\n        avatar\n      }\n    }\n  }\n": typeof types.TasksDocument,
     "\nquery Members {\n  members {\n    email\n    id\n    name\n    avatar\n    firstname\n    lastname\n    updatedAt\n  }\n}\n": typeof types.MembersDocument,
 };
 const documents: Documents = {
     "\nquery Projects {\n  projects {\n    id\n    title\n    description\n    status\n    ownerId\n    updatedAt\n  }\n}\n": types.ProjectsDocument,
-    "\n  query Tasks {\n    tasks {\n      id\n      title\n      status\n      label\n      description\n      assigneeId\n    }\n  }\n": types.TasksDocument,
+    "\nmutation CreateTask($input: CreateTaskInput!) {\n    createTask(input: $input) {\n      id\n      title\n      description\n      status\n      label\n      priority\n      projectId\n      assigneeId\n      updatedAt\n    }\n  }\n": types.CreateTaskDocument,
+    "\nmutation DeleteTask($deleteTaskId: String!) {\n  deleteTask(id: $deleteTaskId) {\n    success\n  }\n}\n": types.DeleteTaskDocument,
+    "\nmutation UpdateTask($updateTaskId: String!, $input: UpdateTaskInput!) {\n  updateTask(id: $updateTaskId, input: $input) {\n    id\n    title\n    priority\n    description\n    status\n    label\n    projectId\n    assigneeId\n    updatedAt\n  }\n}\n": types.UpdateTaskDocument,
+    "\nquery Task($taskId: String!) {\n    task(taskId: $taskId) {\n      id\n      title\n      priority\n      description\n      status\n      label\n      projectId\n      assigneeId\n      updatedAt\n    }\n  }\n": types.TaskDocument,
+    "\n  query Tasks {\n    tasks {\n      id\n      title\n      status\n      label\n      priority\n      description\n      assigneeId\n      project {\n        id \n        title\n      }\n      assignee {\n        id\n        name\n        avatar\n      }\n    }\n  }\n": types.TasksDocument,
     "\nquery Members {\n  members {\n    email\n    id\n    name\n    avatar\n    firstname\n    lastname\n    updatedAt\n  }\n}\n": types.MembersDocument,
 };
 
@@ -45,7 +53,23 @@ export function graphql(source: "\nquery Projects {\n  projects {\n    id\n    t
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query Tasks {\n    tasks {\n      id\n      title\n      status\n      label\n      description\n      assigneeId\n    }\n  }\n"): (typeof documents)["\n  query Tasks {\n    tasks {\n      id\n      title\n      status\n      label\n      description\n      assigneeId\n    }\n  }\n"];
+export function graphql(source: "\nmutation CreateTask($input: CreateTaskInput!) {\n    createTask(input: $input) {\n      id\n      title\n      description\n      status\n      label\n      priority\n      projectId\n      assigneeId\n      updatedAt\n    }\n  }\n"): (typeof documents)["\nmutation CreateTask($input: CreateTaskInput!) {\n    createTask(input: $input) {\n      id\n      title\n      description\n      status\n      label\n      priority\n      projectId\n      assigneeId\n      updatedAt\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\nmutation DeleteTask($deleteTaskId: String!) {\n  deleteTask(id: $deleteTaskId) {\n    success\n  }\n}\n"): (typeof documents)["\nmutation DeleteTask($deleteTaskId: String!) {\n  deleteTask(id: $deleteTaskId) {\n    success\n  }\n}\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\nmutation UpdateTask($updateTaskId: String!, $input: UpdateTaskInput!) {\n  updateTask(id: $updateTaskId, input: $input) {\n    id\n    title\n    priority\n    description\n    status\n    label\n    projectId\n    assigneeId\n    updatedAt\n  }\n}\n"): (typeof documents)["\nmutation UpdateTask($updateTaskId: String!, $input: UpdateTaskInput!) {\n  updateTask(id: $updateTaskId, input: $input) {\n    id\n    title\n    priority\n    description\n    status\n    label\n    projectId\n    assigneeId\n    updatedAt\n  }\n}\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\nquery Task($taskId: String!) {\n    task(taskId: $taskId) {\n      id\n      title\n      priority\n      description\n      status\n      label\n      projectId\n      assigneeId\n      updatedAt\n    }\n  }\n"): (typeof documents)["\nquery Task($taskId: String!) {\n    task(taskId: $taskId) {\n      id\n      title\n      priority\n      description\n      status\n      label\n      projectId\n      assigneeId\n      updatedAt\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query Tasks {\n    tasks {\n      id\n      title\n      status\n      label\n      priority\n      description\n      assigneeId\n      project {\n        id \n        title\n      }\n      assignee {\n        id\n        name\n        avatar\n      }\n    }\n  }\n"): (typeof documents)["\n  query Tasks {\n    tasks {\n      id\n      title\n      status\n      label\n      priority\n      description\n      assigneeId\n      project {\n        id \n        title\n      }\n      assignee {\n        id\n        name\n        avatar\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -5,6 +5,9 @@ import { Edit } from "davinci/icons"
 import { Button, Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger, ScrollArea } from "davinci/primitives"
 import { EditTaskForm } from "../edit-task-form"
 import { Task } from "../../hooks/data/schema"
+import { useUpdateTask } from "../../mutations/use-edit-task"
+import { query } from "../../queries/tasks.query"
+import { useTask } from "../../queries/use-task"
 
 interface EditTaskDrawerProps {
   taskId: string
@@ -27,8 +30,11 @@ export function EditTaskDrawer({
   open,
   onOpenChange
 }: EditTaskDrawerProps) {
+  const { data } = useTask({ variables: { taskId } });
+  const [updateTask, { loading: isLoading }] = useUpdateTask({
+    refetchQueries: [{ query: query }],
+  });
   const [_open, _setOpen] = React.useState(false)
-  const [isLoading, setIsLoading] = React.useState(false)
 
   // Use controlled state if provided, otherwise use internal state
   const isControlled = open !== undefined && onOpenChange !== undefined
@@ -36,11 +42,14 @@ export function EditTaskDrawer({
   const setCurrentOpen = isControlled ? onOpenChange : _setOpen
 
   const handleSubmit = async (data: Omit<Task, "id">) => {
-    setIsLoading(true)
-    
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
+    const result = await updateTask({
+      variables: {
+        updateTaskId: taskId,
+        input: data,
+      },
+    });
+
+    if(result.data?.updateTask) {
       
       // Create updated task with existing ID
       const updatedTask: Task = {
@@ -53,13 +62,6 @@ export function EditTaskDrawer({
       
       // Close the drawer
       setCurrentOpen(false)
-      
-      // You would typically update your database here
-      console.log("Task updated:", updatedTask)
-    } catch (error) {
-      console.error("Error updating task:", error)
-    } finally {
-      setIsLoading(false)
     }
   }
 
@@ -84,7 +86,7 @@ export function EditTaskDrawer({
           </DrawerHeader>
           <div className="p-6">
             <EditTaskForm 
-              taskId={taskId}
+              initialData={data?.task}
               onSubmit={handleSubmit}
               onCancel={handleCancel}
               isLoading={isLoading}

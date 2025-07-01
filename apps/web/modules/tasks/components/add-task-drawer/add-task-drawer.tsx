@@ -5,6 +5,8 @@ import { Plus } from "davinci/icons"
 import { Button, Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger, ScrollArea } from "davinci/primitives"
 import { AddTaskForm } from "../add-task-form"
 import { Task } from "../../hooks/data/schema"
+import { useCreateTask } from "../../mutations/use-create-task"
+import { query } from "../../queries/tasks.query"
 
 interface AddTaskDrawerProps {
   onTaskAdded?: (task: Task) => void
@@ -20,34 +22,29 @@ export function AddTaskDrawer({
   triggerSize = "sm"
 }: AddTaskDrawerProps) {
   const [open, setOpen] = React.useState(false)
-  const [isLoading, setIsLoading] = React.useState(false)
+
+  const [createTask, { loading: isLoading }] = useCreateTask({
+    refetchQueries: [{ query: query }],
+  });
 
   const handleSubmit = async (data: Omit<Task, "id">) => {
-    setIsLoading(true)
-    
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
-      // Generate a mock ID
-      const newTask: Task = {
-        ...data,
-        id: `TASK-${Math.random().toString(36).substr(2, 4).toUpperCase()}`,
+      const result = await createTask({
+        variables: {
+          input: data,
+        },
+      });
+      const task = result.data?.createTask;
+
+      if(!task) {
+        return;
       }
       
       // Call the callback with the new task
-      onTaskAdded?.(newTask)
+      onTaskAdded?.(task)
       
       // Close the drawer
       setOpen(false)
       
-      // You would typically save to your database here
-      console.log("New task created:", newTask)
-    } catch (error) {
-      console.error("Error creating task:", error)
-    } finally {
-      setIsLoading(false)
-    }
   }
 
   const handleCancel = () => {

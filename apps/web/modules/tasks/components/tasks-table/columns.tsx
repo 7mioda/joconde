@@ -1,13 +1,14 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
+import Image from 'next/image';
 
 import { Badge, Checkbox } from "davinci/primitives"
 
-import { labels, priorities, statuses } from "../../hooks/data/data"
-import { Task } from "../../hooks/data/schema"
+import { priorities, statuses } from "../../hooks/data/data"
 import { TasksTableColumnHeader } from "./tasks-table-column-header"
 import { TasksTableRowActions } from "./tasks-table-row-actions"
+import { Task } from "../../../../graphql"
 
 export const columns: ColumnDef<Task>[] = [
   {
@@ -35,27 +36,51 @@ export const columns: ColumnDef<Task>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "id",
-    header: ({ column }) => (
-      <TasksTableColumnHeader column={column} title="Task" />
-    ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
     accessorKey: "title",
     header: ({ column }) => (
       <TasksTableColumnHeader column={column} title="Title" />
     ),
     cell: ({ row }) => {
-      const label = labels.find((label) => label.value === row.original.label)
-
+      return (
+        <div className="flex space-x-2 row-span-2">
+          <span className="max-w-[100px] truncate font-medium">
+            {row.getValue("title")}
+          </span>
+          <Badge variant="outline">{row.original.project?.title}</Badge>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "assignee",
+    header: ({ column }) => (
+      <TasksTableColumnHeader column={column} title="Assignee" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex items-center gap-3">
+        <Image 
+            src={row.original.assignee?.avatar} 
+            alt={row.original.assignee?.name}
+            width={24}
+            height={24}
+            className="rounded-full"
+        />
+        <span className="font-medium">{row.original.assignee?.name}</span>
+    </div>
+      )
+    },
+  },
+  {
+    accessorKey: "description",
+    header: ({ column }) => (
+      <TasksTableColumnHeader column={column} title="Description" />
+    ),
+    cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
-          {label && <Badge variant="outline">{label.label}</Badge>}
-          <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("title")}
+          <span className="max-w-[200px] truncate font-medium">
+            {row.original.description}
           </span>
         </div>
       )

@@ -7,8 +7,18 @@ export const query = graphql(`
       title
       status
       label
+      priority
       description
       assigneeId
+      project {
+        id 
+        title
+      }
+      assignee {
+        id
+        name
+        avatar
+      }
     }
   }
 `);
