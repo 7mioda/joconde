@@ -5,10 +5,13 @@ import { Edit } from "davinci/icons"
 import { Button, Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger, ScrollArea } from "davinci/primitives"
 import { CopyTaskForm } from "../copy-task-form"
 import { Task } from "../../hooks/data/schema"
+import { useUpdateTask } from "../../mutations/use-edit-task"
+import { query } from "../../queries/tasks.query"
+import { useTask } from "../../queries/use-task"
 
 interface CopyTaskDrawerProps {
   taskId: string
-  onTaskUpdated?: (task: Task) => void
+  onTaskCopied?: (task: Task) => void
   triggerLabel?: string
   triggerVariant?: "default" | "outline" | "secondary" | "ghost" | "link" | "destructive"
   triggerSize?: "default" | "sm" | "lg" | "icon"
@@ -19,7 +22,7 @@ interface CopyTaskDrawerProps {
 
 export function CopyTaskDrawer({ 
   taskId,
-  onTaskUpdated, 
+  onTaskCopied, 
   triggerLabel = "Copy Task",
   triggerVariant = "ghost",
   triggerSize = "sm",
@@ -27,8 +30,11 @@ export function CopyTaskDrawer({
   open,
   onOpenChange
 }: CopyTaskDrawerProps) {
+  const { data } = useTask({ variables: { taskId } });
+  const [updateTask, { loading: isLoading }] = useUpdateTask({
+    refetchQueries: [{ query: query }],
+  });
   const [_open, _setOpen] = React.useState(false)
-  const [isLoading, setIsLoading] = React.useState(false)
 
   // Use controlled state if provided, otherwise use internal state
   const isControlled = open !== undefined && onOpenChange !== undefined
@@ -36,11 +42,14 @@ export function CopyTaskDrawer({
   const setCurrentOpen = isControlled ? onOpenChange : _setOpen
 
   const handleSubmit = async (data: Omit<Task, "id">) => {
-    setIsLoading(true)
-    
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
+    const result = await updateTask({
+      variables: {
+        updateTaskId: taskId,
+        input: data,
+      },
+    });
+
+    if(result.data?.updateTask) {
       
       // Create updated task with existing ID
       const updatedTask: Task = {
@@ -49,17 +58,10 @@ export function CopyTaskDrawer({
       }
       
       // Call the callback with the updated task
-      onTaskUpdated?.(updatedTask)
+      onTaskCopied?.(updatedTask)
       
       // Close the drawer
       setCurrentOpen(false)
-      
-      // You would typically update your database here
-      console.log("Task updated:", updatedTask)
-    } catch (error) {
-      console.error("Error updating task:", error)
-    } finally {
-      setIsLoading(false)
     }
   }
 
@@ -84,7 +86,7 @@ export function CopyTaskDrawer({
           </DrawerHeader>
           <div className="p-6">
             <CopyTaskForm 
-              taskId={taskId}
+              initialData={data?.task}
               onSubmit={handleSubmit}
               onCancel={handleCancel}
               isLoading={isLoading}

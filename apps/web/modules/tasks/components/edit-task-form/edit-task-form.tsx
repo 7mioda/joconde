@@ -19,7 +19,6 @@ import { ProjectSelect } from "../../../project"
 import { priorities, statuses } from "../../hooks/data/data"
 import { taskSchema } from "../../hooks/data/schema"
 import { TeamMemberSelect } from "../../../team/team-member-select"
-import { Task } from "../../../../graphql"
 
 // Create a schema for the form (without id since it will be generated)
 const addTaskSchema = taskSchema.omit({ id: true })
