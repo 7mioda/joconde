@@ -1,4 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app).
+# Joconde Web App
+
+A modern task and issue tracker built with Next.js, featuring a modular architecture that promotes maintainability and scalability.
+
+## Architecture Overview
+
+This application follows a **modular architecture** where each module is responsible for a specific domain of functionality. Each component within a module has a **single responsibility** - handling one specific action or feature.
+
+### Module Structure
+
+The app is organized into domain-specific modules located in `/modules`:
+
+```
+modules/
+├── tasks/          # Task management functionality
+├── tracker/        # Real-time tracking and subscriptions
+├── team/           # Team member management
+├── project/        # Project management
+└── theming/        # Theme and styling configuration
+```
+
+### How Modules Work
+
+Each module follows a consistent structure:
+
+```
+module-name/
+├── components/     # UI components specific to this domain
+├── queries/        # GraphQL queries for data fetching
+├── mutations/      # GraphQL mutations for data changes
+├── hooks/          # Custom React hooks
+└── index.ts        # Public API exports
+```
+
+### Single Responsibility Components
+
+Every component is designed to handle **one specific action**:
+
+#### Tasks Module Examples:
+- `add-task-form/` - **Single action**: Create a new task
+- `edit-task-form/` - **Single action**: Modify existing task data
+- `delete-task-button/` - **Single action**: Remove a task
+- `mark-as-favorite-button/` - **Single action**: Toggle task favorite status
+- `tasks-table/` - **Single action**: Display and manage task list
+
+#### Table Components (Single Responsibility):
+- `tasks-table-toolbar/` - **Single action**: Provide table controls and filters
+- `tasks-table-pagination/` - **Single action**: Handle page navigation
+- `tasks-table-faceted-filter/` - **Single action**: Apply column-based filtering
+- `tasks-table-row-actions/` - **Single action**: Provide row-specific operations
+
+### Module Integration
+
+Modules are integrated through providers in the app layout:
+
+```tsx
+// app/layout.tsx
+<GraphQLProvider>
+  <TrackerProvider>
+    <ThemingProvider>
+      {/* App content */}
+    </ThemingProvider>
+  </TrackerProvider>
+</GraphQLProvider>
+```
+
+### Usage Pattern
+
+Components are imported from their respective modules:
+
+```tsx
+// Import from tasks module
+import { TasksTable, AddTaskDrawer } from "../modules/tasks"
+
+// Import from project module
+import { ProjectSelect } from "../modules/project"
+
+// Import from team module  
+import { TeamMemberSelect } from "../modules/team"
+```
 
 ## Getting Started
 
@@ -16,16 +95,22 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Development Principles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load Inter, a custom Google Font.
+1. **Single Responsibility**: Each component handles exactly one action or feature
+2. **Module Isolation**: Modules are self-contained with clear boundaries
+3. **Composable Design**: Components can be easily combined and reused
+4. **Type Safety**: Full TypeScript support with Zod schema validation
+5. **GraphQL Integration**: Centralized data management with GraphQL
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js Documentation](https://nextjs.org/docs)
+- [GraphQL](https://graphql.org/)
+- [TanStack Table](https://tanstack.com/table) - Used for data tables
+- [Zod](https://zod.dev/) - Schema validation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load Inter, a custom Google Font.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
