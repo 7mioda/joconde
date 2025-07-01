@@ -6,6 +6,7 @@ import { TasksResolver } from './tasks/tasks.resolver';
 import { DeleteTasksResolver } from './delete-task/delete-tasks.resolver';
 import { UpdateTaskResolver } from './update-task/update-task.resolver';
 import { CreateTaskResolver } from './create-task/create-task.resolver';
+import { CopyTaskResolver } from './copy-task/copy-task.resolver';
 import { TaskResolver } from './task/task.resolver';
 import { TaskFieldsResolver } from './task-fields';
 
@@ -19,6 +20,7 @@ import { TaskFieldsResolver } from './task-fields';
     CreateTaskResolver,
     TaskResolver,
     TaskFieldsResolver,
+    CopyTaskResolver,
   ],
 })
 export class TasksModule {}

@@ -34,6 +34,6 @@ export abstract class TaskRepository {
   abstract findAll(filters?: TaskFilters): Promise<Task[]>;
   abstract update(id: string, data: UpdateTaskData): Promise<Task>;
   abstract delete(id: string): Promise<void>;
-  abstract copy(id: string, newProjectId?: string): Promise<Task>;
+  abstract copy(id: string, data?: UpdateTaskData): Promise<Task>;
   abstract exists(id: string): Promise<boolean>;
 } 

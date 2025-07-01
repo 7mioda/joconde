@@ -5,9 +5,9 @@ import { Edit } from "davinci/icons"
 import { Button, Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger, ScrollArea } from "davinci/primitives"
 import { CopyTaskForm } from "../copy-task-form"
 import { Task } from "../../hooks/data/schema"
-import { useUpdateTask } from "../../mutations/use-edit-task"
 import { query } from "../../queries/tasks.query"
 import { useTask } from "../../queries/use-task"
+import { useCopyTask } from "../../mutations/use-copy-task"
 
 interface CopyTaskDrawerProps {
   taskId: string
@@ -31,7 +31,7 @@ export function CopyTaskDrawer({
   onOpenChange
 }: CopyTaskDrawerProps) {
   const { data } = useTask({ variables: { taskId } });
-  const [updateTask, { loading: isLoading }] = useUpdateTask({
+  const [copyTask, { loading: isLoading }] = useCopyTask({
     refetchQueries: [{ query: query }],
   });
   const [_open, _setOpen] = React.useState(false)
@@ -42,23 +42,17 @@ export function CopyTaskDrawer({
   const setCurrentOpen = isControlled ? onOpenChange : _setOpen
 
   const handleSubmit = async (data: Omit<Task, "id">) => {
-    const result = await updateTask({
+    const result = await copyTask({
       variables: {
-        updateTaskId: taskId,
+        taskId,
         input: data,
       },
     });
 
-    if(result.data?.updateTask) {
-      
-      // Create updated task with existing ID
-      const updatedTask: Task = {
-        ...data,
-        id: taskId,
-      }
+    if(result.data?.copyTask) {
       
       // Call the callback with the updated task
-      onTaskCopied?.(updatedTask)
+      onTaskCopied?.(result.data?.copyTask)
       
       // Close the drawer
       setCurrentOpen(false)

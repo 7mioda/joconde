@@ -118,7 +118,7 @@ export class PrismaTaskRepository implements TaskRepository {
     });
   }
 
-  async copy(id: string, newProjectId?: string): Promise<Task> {
+  async copy(id: string, data?: UpdateTaskData): Promise<Task> {
     const originalTask = await this.findById(id);
     if (!originalTask) {
       throw new Error(`Task with id ${id} not found`);
@@ -126,12 +126,12 @@ export class PrismaTaskRepository implements TaskRepository {
 
     const copyData: CreateTaskData = {
       title: `${originalTask.title} (Copy)`,
-      description: originalTask.description,
-      status: originalTask.status,
-      label: originalTask.label,
-      projectId: newProjectId || originalTask.projectId,
-      priority: originalTask.priority,
-      assigneeId: originalTask.assigneeId,
+      description: data?.description || originalTask.description,
+      status: data?.status || originalTask.status,
+      label: data?.label || originalTask.label,
+      projectId: data?.projectId || originalTask.projectId,
+      priority: data?.priority || originalTask.priority,
+      assigneeId: data?.assigneeId || originalTask.assigneeId,
     };
 
     return this.create(copyData);

@@ -118,6 +118,7 @@ type Mutation {
   deleteTask(id: String!): DeleteTaskOutput!
   updateTask(id: String!, input: UpdateTaskInput!): Task!
   createTask(input: CreateTaskInput!): Task!
+  copyTask(taskId: String!, input: CopyTaskInput!): Task!
   createMember(input: CreateMemberInput!): Member!
   updateMember(id: String!, input: UpdateMemberInput!): Member!
   deleteMember(id: String!): DeleteMemberOutput!
@@ -169,6 +170,29 @@ input CreateTaskInput {
 
   """The priority of the task"""
   priority: String!
+}
+
+input CopyTaskInput {
+  """The title of the task"""
+  title: String
+
+  """The description of the task"""
+  description: String
+
+  """The assignee ID of the task"""
+  assigneeId: String
+
+  """The status of the task"""
+  status: String
+
+  """The label of the task"""
+  label: String
+
+  """The project ID of the task"""
+  projectId: String
+
+  """The priority of the task"""
+  priority: String
 }
 
 input CreateMemberInput {

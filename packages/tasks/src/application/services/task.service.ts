@@ -38,8 +38,8 @@ export class TaskService {
     await this.taskRepository.delete(id);
   }
 
-  async copyTask(id: string, newProjectId?: string): Promise<Task> {
-    return this.taskRepository.copy(id, newProjectId);
+  async copyTask(id: string,  data: UpdateTaskData): Promise<Task> {
+    return this.taskRepository.copy(id, data);
   }
 
   async getTasksByStatus(status: string): Promise<Task[]> {
